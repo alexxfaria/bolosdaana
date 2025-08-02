@@ -20,7 +20,7 @@ function enviarWhatsApp() {
     return;
   }
 
-  let mensagem = `Olá, quero encomendar bolos com as seguintes informações:%0A`;
+  let mensagem = `Olá, gostaria de fazer um pedido:%0A`;
 
   if (nome) {
     mensagem += `%0A👤 Nome: ${nome}`;
