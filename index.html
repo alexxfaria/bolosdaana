@@ -1,63 +1,87 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Cardápio - Bolos da Ana</title>
   <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
 
- <header style="display: flex; align-items: center; gap: 20px; justify-content: center;">
-  <img src="logobolodana.png" alt="Logo Bolos da Ana" style="width: 250px; height: auto;">
-  <h1 style="margin: 0;">Cardápio de Bolos</h1>
-</header>
+  <header style="display: flex; align-items: center; gap: 20px; justify-content: center;"><img src="logobolodana.png"
+      alt="Logo Bolos da Ana" style="width: 180px; height: auto;">
+    <h1 style="margin: 0;">Cardápio de Bolos</h1>
+  </header>
 
   <div class="preco">Valor do kg:<br>
-  <span class="valor-destaque">R$ 65,00</span></div>
+    <span class="valor-destaque">R$ 65,00</span>
+  </div>
 
   <section>
     <h2>Com chocolate:</h2>
-    <ul>
-      <li>Ninho com chocolate</li>
-      <li>Ninho com Nutella</li>
-      <li>Ninho trufado com Ouro Branco</li>
-      <li>Ninho trufado com Sonho de Valsa</li>
+    <ul style="list-style: none; padding: 0;">
+      <li><label><input type="checkbox" name="bolo1"> Ninho com chocolate</label> <input type="number" name="peso1"
+          min="0" step="0.5" placeholder="kg" style="width: 60px;"></li>
+      <li><label><input type="checkbox" name="bolo2"> Ninho com Nutella</label> <input type="number" name="peso2"
+          min="0" step="0.5" placeholder="kg" style="width: 60px;"></li>
+      <li><label><input type="checkbox" name="bolo3"> Ninho trufado com Ouro Branco</label> <input type="number"
+          name="peso3" min="0" step="0.5" placeholder="kg" style="width: 60px;"></li>
+      <li><label><input type="checkbox" name="bolo4"> Ninho trufado com Sonho de Valsa</label> <input type="number"
+          name="peso4" min="0" step="0.5" placeholder="kg" style="width: 60px;"></li>
     </ul>
   </section>
 
   <section>
     <h2>Com massa de chocolate:</h2>
-    <ul>
-      <li>Brigadeiro</li>
-      <li>Prestígio</li>
-      <li>Casadinho</li>
-      <li>Floresta Negra</li>
+    <ul style="list-style: none; padding: 0;">
+      <li><label><input type="checkbox" name="bolo5"> Brigadeiro</label> <input type="number" name="peso5" min="0"
+          step="0.5" placeholder="kg" style="width: 60px;"></li>
+      <li><label><input type="checkbox" name="bolo6"> Prestígio</label> <input type="number" name="peso6" min="0"
+          step="0.5" placeholder="kg" style="width: 60px;"></li>
+      <li><label><input type="checkbox" name="bolo7"> Casadinho</label> <input type="number" name="peso7" min="0"
+          step="0.5" placeholder="kg" style="width: 60px;"></li>
+      <li><label><input type="checkbox" name="bolo8"> Floresta Negra</label> <input type="number" name="peso8" min="0"
+          step="0.5" placeholder="kg" style="width: 60px;"></li>
     </ul>
   </section>
 
   <section>
     <h2>Com frutas:</h2>
-    <ul>
-      <li>Abacaxi com coco</li>
-      <li>Morango com suspiros</li>
-      <li>Ninho com frutas vermelhas e morango</li>
-      <li>Ninho com frutas vermelhas</li>
-      <li>Ninho com morango</li>
-      <li>Ninho com morango e Nutella</li>
-      <li>Creme de ninho com abacaxi e pêssego</li>
-      <li>Quatro leites com morango</li>
-      <li>Quatro leites com abacaxi</li>
-      <li>Laka com morango</li>
-      <li>Pêssego com doce de leite</li>
+    <ul style="list-style: none; padding: 0;">
+      <li><label><input type="checkbox" name="bolo9"> Abacaxi com coco</label> <input type="number" name="peso9" min="0"
+          step="0.5" placeholder="kg" style="width: 60px;"></li>
+      <li><label><input type="checkbox" name="bolo10"> Morango com suspiros</label> <input type="number" name="peso10"
+          min="0" step="0.5" placeholder="kg" style="width: 60px;"></li>
+      <li><label><input type="checkbox" name="bolo11"> Ninho com frutas vermelhas e morango</label> <input type="number"
+          name="peso11" min="0" step="0.5" placeholder="kg" style="width: 60px;"></li>
+      <li><label><input type="checkbox" name="bolo12"> Ninho com frutas vermelhas</label> <input type="number"
+          name="peso12" min="0" step="0.5" placeholder="kg" style="width: 60px;"></li>
+      <li><label><input type="checkbox" name="bolo13"> Ninho com morango</label> <input type="number" name="peso13"
+          min="0" step="0.5" placeholder="kg" style="width: 60px;"></li>
+      <li><label><input type="checkbox" name="bolo14"> Ninho com morango e Nutella</label> <input type="number"
+          name="peso14" min="0" step="0.5" placeholder="kg" style="width: 60px;"></li>
+      <li><label><input type="checkbox" name="bolo15"> Creme de ninho com abacaxi e pêssego</label> <input type="number"
+          name="peso15" min="0" step="0.5" placeholder="kg" style="width: 60px;"></li>
+      <li><label><input type="checkbox" name="bolo16"> Quatro leites com morango</label> <input type="number"
+          name="peso16" min="0" step="0.5" placeholder="kg" style="width: 60px;"></li>
+      <li><label><input type="checkbox" name="bolo17"> Quatro leites com abacaxi</label> <input type="number"
+          name="peso17" min="0" step="0.5" placeholder="kg" style="width: 60px;"></li>
+      <li><label><input type="checkbox" name="bolo18"> Laka com morango</label> <input type="number" name="peso18"
+          min="0" step="0.5" placeholder="kg" style="width: 60px;"></li>
+      <li><label><input type="checkbox" name="bolo19"> Pêssego com doce de leite</label> <input type="number"
+          name="peso19" min="0" step="0.5" placeholder="kg" style="width: 60px;"></li>
     </ul>
   </section>
 
   <section>
     <h2>Crocantes:</h2>
-    <ul>
-      <li>Nozes com crocante</li>
-      <li>Strogonof de nozes</li>
+    <ul style="list-style: none; padding: 0;">
+      <li><label><input type="checkbox" name="bolo20"> Nozes com crocante</label> <input type="number" name="peso20"
+          min="0" step="0.5" placeholder="kg" style="width: 60px;"></li>
+      <li><label><input type="checkbox" name="bolo21"> Strogonof de nozes</label> <input type="number" name="peso21"
+          min="0" step="0.5" placeholder="kg" style="width: 60px;"></li>
     </ul>
   </section>
 
@@ -67,13 +91,43 @@
     <p>• Aceitamos encomendas com 2 dias de antecedência e pagamento de 50% do valor.</p>
   </div>
 
-  <div class="contato">
+  <!-- <div class="contato">
 	  <a href="https://wa.me/5543999608255" target="_blank" class="link-contato">
 		Faça sua encomenda: <br>
         📞 (43) 99960-8255
 	  </a>
+  </div> -->
+  <div class="pedido-info">
+    <label for="nome">Nome:</label>
+    <input type="text" id="nome" name="nome" placeholder="Digite seu nome" required>
+
+    <label for="data">Data da retirada:</label>
+    <input type="date" id="data" name="data" required>
+
+    <label for="pagamento">Forma de pagamento:</label>
+    <select id="pagamento" name="pagamento" onchange="mostrarPix()">
+      <option value="">Selecione</option>
+      <option value="pix">PIX</option>
+      <option value="credito">Cartão de crédito</option>
+      <option value="debito">Cartão de débito</option>
+      <option value="dinheiro">Dinheiro</option>
+    </select>
+
+    <div id="campo-pix" style="display: none;">
+      <label for="chave-pix">Chave PIX (copiar e colar):</label>
+      <input type="text" id="chave-pix" value="43999608255" readonly onclick="copiarPix()" style="cursor: pointer;">
+      <small id="pix-feedback" style="color: green; display: none;">Copiado!</small>
+    </div>
   </div>
 
 
+
+  <a href="#" onclick="enviarWhatsApp()" class="botao-whatsapp">
+    Enviar pedido via WhatsApp
+  </a>
+
+
+  <script src="script.js"></script>
 </body>
+
 </html>

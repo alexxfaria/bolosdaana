@@ -53,6 +53,14 @@ ul li {
   margin: 4px 0;
 }
 
+li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 5px;
+}
+
+
 .info {
   font-size: 0.85em;
   padding: 15px;
@@ -88,3 +96,59 @@ ul li {
   font-size: 1.6em;
   font-weight: bold;
 }
+
+.botao-whatsapp {
+  display: block;
+  width: 90%;
+  max-width: 400px;
+  margin: 20px auto;
+  padding: 15px 20px;
+  background-color: #a53b22;
+  color: white;
+  text-align: center;
+  text-decoration: none;
+  font-size: 18px;
+  font-weight: bold;
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+  transition: background-color 0.3s ease;
+}
+
+.botao-whatsapp:hover {
+  background-color: #862f1b;
+}
+
+.pedido-info {
+  max-width: 400px;
+  margin: 30px auto;
+  padding: 20px;
+  background-color: #fdf1e7;
+  border-radius: 10px;
+  box-sizing: border-box;
+}
+
+.pedido-info label {
+  display: block;
+  margin-top: 15px;
+  font-weight: bold;
+  color: #5a2a0a;
+}
+
+.pedido-info input,
+.pedido-info select {
+  width: 100%;
+  padding: 8px;
+  margin-top: 5px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+}
+
+#pix-feedback {
+  margin-top: 5px;
+  display: block;
+  font-size: 0.85em;
+}
+
