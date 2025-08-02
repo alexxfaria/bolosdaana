@@ -1,26 +1,53 @@
-function enviarWhatsApp() {
-  const numero = "5543999608255"; // número da Ana com DDI e DDD
+function enviarWhatsApp(event) {
+  event.preventDefault();
+  const numero = "5543999608255";
   const nome = document.getElementById("nome").value.trim();
   const data = document.getElementById("data").value;
   const pagamento = document.getElementById("pagamento").value;
   const valorPix = document.getElementById("valor-pix")?.value.trim();
 
+  // Limpa mensagens de erro antes da validação
+  document.getElementById('nome-error').textContent = "";
+  document.getElementById('data-error').textContent = "";
+  document.getElementById('pagamento-error').textContent = "";
+
+  let valido = true;
+
   if (!nome) {
-    alert("Por favor, preencha seu nome.");
-    return;
+    document.getElementById('nome-error').textContent = "Por favor, preencha seu nome.";
+    valido = false;
   }
 
   if (!data) {
-    alert("Por favor, selecione a data da retirada.");
-    return;
+    document.getElementById('data-error').textContent = "Por favor, selecione a data da retirada.";
+    valido = false;
   }
 
   if (!pagamento) {
-    alert("Por favor, selecione a forma de pagamento.");
-    return;
+    document.getElementById('pagamento-error').textContent = "Por favor, selecione a forma de pagamento.";
+    valido = false;
   }
 
+  // Validação dos bolos selecionados e pesos mínimos
+  let algumSelecionado = false;
   let mensagem = `Olá, gostaria de fazer um pedido:%0A`;
+
+  if (!valido) {
+    // Rolar até o primeiro erro e focar no campo correspondente
+    const campos = ['nome', 'data', 'pagamento'];
+    for (const id of campos) {
+      const erroEl = document.getElementById(id + '-error');
+      if (erroEl && erroEl.textContent) {
+        const campo = document.getElementById(id);
+        if (campo) {
+          campo.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          campo.focus();
+        }
+        break; // só rola para o primeiro erro
+      }
+    }
+    return; // para envio
+  }
 
   if (nome) {
     mensagem += `%0A👤 Nome: ${nome}`;
@@ -46,8 +73,6 @@ function enviarWhatsApp() {
 
   mensagem += `%0A%0A🍰 Bolos encomendados:%0A`;
 
-  let algumSelecionado = false;
-
   for (let i = 1; i <= 21; i++) {
     const peso = document.querySelector(`input[name="peso${i}"]`);
 
@@ -60,7 +85,7 @@ function enviarWhatsApp() {
         .trim();
 
       if (parseFloat(peso.value) < 1.5) {
-        alert(`O bolo "${nomeBolo}" precisa ter no mínimo 1,5 kg.`);
+        alert(`O bolo "${nomeBolo}" precisa ter no mínimo 1,5 kg.`); // Esse alerta você pode adaptar depois para uma mensagem inline
         return;
       }
 
@@ -70,7 +95,7 @@ function enviarWhatsApp() {
   }
 
   if (!algumSelecionado) {
-    alert("Selecione pelo menos um bolo com o peso mínimo de 1,5 kg.");
+    alert("Selecione pelo menos um bolo com o peso mínimo de 1,5 kg."); // Também pode adaptar para mensagem inline
     return;
   }
 

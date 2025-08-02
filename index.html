@@ -206,9 +206,11 @@
   <div class="pedido-info">
     <label for="nome">Nome:</label>
     <input type="text" id="nome" name="nome" placeholder="Digite seu nome" required>
+    <span class="error-message" id="nome-error"></span>
 
     <label for="data">Data da retirada:</label>
     <input type="date" id="data" name="data" required>
+    <span class="error-message" id="data-error"></span>
 
     <label for="pagamento">Forma de pagamento:</label>
     <select id="pagamento" name="pagamento" onchange="mostrarPix()">
@@ -218,6 +220,7 @@
       <option value="debito">Cartão de débito</option>
       <option value="dinheiro">Dinheiro</option>
     </select>
+    <span class="error-message" id="pagamento-error"></span>
 
     <div id="campo-pix" style="display: none;">
       <label for="chave-pix">Chave PIX (copiar e colar):</label>
@@ -226,10 +229,9 @@
     </div>
   </div>
 
-  <a href="#" onclick="enviarWhatsApp()" class="botao-whatsapp">
+  <a href="#" onclick="enviarWhatsApp(event)" class="botao-whatsapp">
     Enviar pedido via WhatsApp
   </a>
-
 
   <script src="script.js"></script>
 </body>

@@ -162,3 +162,11 @@ li {
   font-size: 0.85em;
 }
 
+.error-message {
+  color: red;
+  font-size: 0.9em;
+  margin-top: 4px;
+  display: block;
+  height: 16px; /* para manter o espaço mesmo quando não tiver mensagem */
+}
+
