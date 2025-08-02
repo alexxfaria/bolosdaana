@@ -60,6 +60,16 @@ li {
   margin-bottom: 5px;
 }
 
+.controle-peso {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.controle-peso input {
+  width: 60px;
+  text-align: center;
+}
 
 .info {
   font-size: 0.85em;

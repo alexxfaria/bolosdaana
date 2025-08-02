@@ -19,71 +19,177 @@
     <span class="valor-destaque">R$ 65,00</span>
   </div>
 
-  <section>
-    <h2>Com chocolate:</h2>
-    <ul style="list-style: none; padding: 0;">
-      <li><label><input type="checkbox" name="bolo1"> Ninho com chocolate</label> <input type="number" name="peso1"
-          min="0" step="0.5" placeholder="kg" style="width: 60px;"></li>
-      <li><label><input type="checkbox" name="bolo2"> Ninho com Nutella</label> <input type="number" name="peso2"
-          min="0" step="0.5" placeholder="kg" style="width: 60px;"></li>
-      <li><label><input type="checkbox" name="bolo3"> Ninho trufado com Ouro Branco</label> <input type="number"
-          name="peso3" min="0" step="0.5" placeholder="kg" style="width: 60px;"></li>
-      <li><label><input type="checkbox" name="bolo4"> Ninho trufado com Sonho de Valsa</label> <input type="number"
-          name="peso4" min="0" step="0.5" placeholder="kg" style="width: 60px;"></li>
-    </ul>
-  </section>
+<<section>
+  <h2>Com chocolate:</h2>
+  <ul style="list-style: none; padding: 0;">
+    <li>Ninho com chocolate
+      <div class="controle-peso">
+        <button onclick="decreaseWeight('peso1')">-</button>
+        <input type="number" name="peso1" min="1.5" step="0.5" placeholder="kg">
+        <button onclick="increaseWeight('peso1')">+</button>
+      </div>
+    </li>
+    <li>Ninho com Nutella
+      <div class="controle-peso">
+        <button onclick="decreaseWeight('peso2')">-</button>
+        <input type="number" name="peso2" min="1.5" step="0.5" placeholder="kg">
+        <button onclick="increaseWeight('peso2')">+</button>
+      </div>
+    </li>
+    <li>Ninho trufado com Ouro Branco
+      <div class="controle-peso">
+        <button onclick="decreaseWeight('peso3')">-</button>
+        <input type="number" name="peso3" min="1.5" step="0.5" placeholder="kg">
+        <button onclick="increaseWeight('peso3')">+</button>
+      </div>
+    </li>
+    <li>Ninho trufado com Sonho de Valsa
+      <div class="controle-peso">
+        <button onclick="decreaseWeight('peso4')">-</button>
+        <input type="number" name="peso4" min="1.5" step="0.5" placeholder="kg">
+        <button onclick="increaseWeight('peso4')">+</button>
+      </div>
+    </li>
+  </ul>
+</section>
 
-  <section>
-    <h2>Com massa de chocolate:</h2>
-    <ul style="list-style: none; padding: 0;">
-      <li><label><input type="checkbox" name="bolo5"> Brigadeiro</label> <input type="number" name="peso5" min="0"
-          step="0.5" placeholder="kg" style="width: 60px;"></li>
-      <li><label><input type="checkbox" name="bolo6"> Prestígio</label> <input type="number" name="peso6" min="0"
-          step="0.5" placeholder="kg" style="width: 60px;"></li>
-      <li><label><input type="checkbox" name="bolo7"> Casadinho</label> <input type="number" name="peso7" min="0"
-          step="0.5" placeholder="kg" style="width: 60px;"></li>
-      <li><label><input type="checkbox" name="bolo8"> Floresta Negra</label> <input type="number" name="peso8" min="0"
-          step="0.5" placeholder="kg" style="width: 60px;"></li>
-    </ul>
-  </section>
+<section>
+  <h2>Com massa de chocolate:</h2>
+  <ul style="list-style: none; padding: 0;">
+    <li>Brigadeiro
+      <div class="controle-peso">
+        <button onclick="decreaseWeight('peso5')">-</button>
+        <input type="number" name="peso5" min="1.5" step="0.5" placeholder="kg">
+        <button onclick="increaseWeight('peso5')">+</button>
+      </div>
+    </li>
+    <li>Prestígio
+      <div class="controle-peso">
+        <button onclick="decreaseWeight('peso6')">-</button>
+        <input type="number" name="peso6" min="1.5" step="0.5" placeholder="kg">
+        <button onclick="increaseWeight('peso6')">+</button>
+      </div>
+    </li>
+    <li>Casadinho
+      <div class="controle-peso">
+        <button onclick="decreaseWeight('peso7')">-</button>
+        <input type="number" name="peso7" min="1.5" step="0.5" placeholder="kg">
+        <button onclick="increaseWeight('peso7')">+</button>
+      </div>
+    </li>
+    <li>Floresta Negra
+      <div class="controle-peso">
+        <button onclick="decreaseWeight('peso8')">-</button>
+        <input type="number" name="peso8" min="1.5" step="0.5" placeholder="kg">
+        <button onclick="increaseWeight('peso8')">+</button>
+      </div>
+    </li>
+  </ul>
+</section>
 
-  <section>
-    <h2>Com frutas:</h2>
-    <ul style="list-style: none; padding: 0;">
-      <li><label><input type="checkbox" name="bolo9"> Abacaxi com coco</label> <input type="number" name="peso9" min="0"
-          step="0.5" placeholder="kg" style="width: 60px;"></li>
-      <li><label><input type="checkbox" name="bolo10"> Morango com suspiros</label> <input type="number" name="peso10"
-          min="0" step="0.5" placeholder="kg" style="width: 60px;"></li>
-      <li><label><input type="checkbox" name="bolo11"> Ninho com frutas vermelhas e morango</label> <input type="number"
-          name="peso11" min="0" step="0.5" placeholder="kg" style="width: 60px;"></li>
-      <li><label><input type="checkbox" name="bolo12"> Ninho com frutas vermelhas</label> <input type="number"
-          name="peso12" min="0" step="0.5" placeholder="kg" style="width: 60px;"></li>
-      <li><label><input type="checkbox" name="bolo13"> Ninho com morango</label> <input type="number" name="peso13"
-          min="0" step="0.5" placeholder="kg" style="width: 60px;"></li>
-      <li><label><input type="checkbox" name="bolo14"> Ninho com morango e Nutella</label> <input type="number"
-          name="peso14" min="0" step="0.5" placeholder="kg" style="width: 60px;"></li>
-      <li><label><input type="checkbox" name="bolo15"> Creme de ninho com abacaxi e pêssego</label> <input type="number"
-          name="peso15" min="0" step="0.5" placeholder="kg" style="width: 60px;"></li>
-      <li><label><input type="checkbox" name="bolo16"> Quatro leites com morango</label> <input type="number"
-          name="peso16" min="0" step="0.5" placeholder="kg" style="width: 60px;"></li>
-      <li><label><input type="checkbox" name="bolo17"> Quatro leites com abacaxi</label> <input type="number"
-          name="peso17" min="0" step="0.5" placeholder="kg" style="width: 60px;"></li>
-      <li><label><input type="checkbox" name="bolo18"> Laka com morango</label> <input type="number" name="peso18"
-          min="0" step="0.5" placeholder="kg" style="width: 60px;"></li>
-      <li><label><input type="checkbox" name="bolo19"> Pêssego com doce de leite</label> <input type="number"
-          name="peso19" min="0" step="0.5" placeholder="kg" style="width: 60px;"></li>
-    </ul>
-  </section>
+<section>
+  <h2>Com frutas:</h2>
+  <ul style="list-style: none; padding: 0;">
+    <li>Abacaxi com coco
+      <div class="controle-peso">
+        <button onclick="decreaseWeight('peso9')">-</button>
+        <input type="number" name="peso9" min="1.5" step="0.5" placeholder="kg">
+        <button onclick="increaseWeight('peso9')">+</button>
+      </div>
+    </li>
+    <li>Morango com suspiros
+      <div class="controle-peso">
+        <button onclick="decreaseWeight('peso10')">-</button>
+        <input type="number" name="peso10" min="1.5" step="0.5" placeholder="kg">
+        <button onclick="increaseWeight('peso10')">+</button>
+      </div>
+    </li>
+    <li>Ninho com frutas vermelhas e morango
+      <div class="controle-peso">
+        <button onclick="decreaseWeight('peso11')">-</button>
+        <input type="number" name="peso11" min="1.5" step="0.5" placeholder="kg">
+        <button onclick="increaseWeight('peso11')">+</button>
+      </div>
+    </li>
+    <li>Ninho com frutas vermelhas
+      <div class="controle-peso">
+        <button onclick="decreaseWeight('peso12')">-</button>
+        <input type="number" name="peso12" min="1.5" step="0.5" placeholder="kg">
+        <button onclick="increaseWeight('peso12')">+</button>
+      </div>
+    </li>
+    <li>Ninho com morango
+      <div class="controle-peso">
+        <button onclick="decreaseWeight('peso13')">-</button>
+        <input type="number" name="peso13" min="1.5" step="0.5" placeholder="kg">
+        <button onclick="increaseWeight('peso13')">+</button>
+      </div>
+    </li>
+    <li>Ninho com morango e Nutella
+      <div class="controle-peso">
+        <button onclick="decreaseWeight('peso14')">-</button>
+        <input type="number" name="peso14" min="1.5" step="0.5" placeholder="kg">
+        <button onclick="increaseWeight('peso14')">+</button>
+      </div>
+    </li>
+    <li>Creme de ninho com abacaxi e pêssego
+      <div class="controle-peso">
+        <button onclick="decreaseWeight('peso15')">-</button>
+        <input type="number" name="peso15" min="1.5" step="0.5" placeholder="kg">
+        <button onclick="increaseWeight('peso15')">+</button>
+      </div>
+    </li>
+    <li>Quatro leites com morango
+      <div class="controle-peso">
+        <button onclick="decreaseWeight('peso16')">-</button>
+        <input type="number" name="peso16" min="1.5" step="0.5" placeholder="kg">
+        <button onclick="increaseWeight('peso16')">+</button>
+      </div>
+    </li>
+    <li>Quatro leites com abacaxi
+      <div class="controle-peso">
+        <button onclick="decreaseWeight('peso17')">-</button>
+        <input type="number" name="peso17" min="1.5" step="0.5" placeholder="kg">
+        <button onclick="increaseWeight('peso17')">+</button>
+      </div>
+    </li>
+    <li>Laka com morango
+      <div class="controle-peso">
+        <button onclick="decreaseWeight('peso18')">-</button>
+        <input type="number" name="peso18" min="1.5" step="0.5" placeholder="kg">
+        <button onclick="increaseWeight('peso18')">+</button>
+      </div>
+    </li>
+    <li>Pêssego com doce de leite
+      <div class="controle-peso">
+        <button onclick="decreaseWeight('peso19')">-</button>
+        <input type="number" name="peso19" min="1.5" step="0.5" placeholder="kg">
+        <button onclick="increaseWeight('peso19')">+</button>
+      </div>
+    </li>
+  </ul>
+</section>
 
-  <section>
-    <h2>Crocantes:</h2>
-    <ul style="list-style: none; padding: 0;">
-      <li><label><input type="checkbox" name="bolo20"> Nozes com crocante</label> <input type="number" name="peso20"
-          min="0" step="0.5" placeholder="kg" style="width: 60px;"></li>
-      <li><label><input type="checkbox" name="bolo21"> Strogonof de nozes</label> <input type="number" name="peso21"
-          min="0" step="0.5" placeholder="kg" style="width: 60px;"></li>
-    </ul>
-  </section>
+<section>
+  <h2>Crocantes:</h2>
+  <ul style="list-style: none; padding: 0;">
+    <li>Nozes com crocante
+      <div class="controle-peso">
+        <button onclick="decreaseWeight('peso20')">-</button>
+        <input type="number" name="peso20" min="1.5" step="0.5" placeholder="kg">
+        <button onclick="increaseWeight('peso20')">+</button>
+      </div>
+    </li>
+    <li>Strogonof de nozes
+      <div class="controle-peso">
+        <button onclick="decreaseWeight('peso21')">-</button>
+        <input type="number" name="peso21" min="1.5" step="0.5" placeholder="kg">
+        <button onclick="increaseWeight('peso21')">+</button>
+      </div>
+    </li>
+  </ul>
+</section>
+
 
   <div class="info">
     <p>• Pedido mínimo de 1,5 kg.</p>

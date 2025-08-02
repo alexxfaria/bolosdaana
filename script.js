@@ -46,33 +46,26 @@ function enviarWhatsApp() {
 
   mensagem += `%0A%0A🍰 Bolos encomendados:%0A`;
 
-  for (let i = 1; i <= 21; i++) {
-    const checkbox = document.querySelector(`input[name="bolo${i}"]`);
-    const peso = document.querySelector(`input[name="peso${i}"]`);
-    
-    if (checkbox && checkbox.checked && peso && peso.value > 0) {
-      const nomeBolo = checkbox.parentElement.textContent.replace(/[\n\r]/g, "").trim();
-      mensagem += `• ${nomeBolo}: ${peso.value} kg%0A`;
-    }
-  }
-
   let algumSelecionado = false;
 
   for (let i = 1; i <= 21; i++) {
-    const checkbox = document.querySelector(`input[name="bolo${i}"]`);
     const peso = document.querySelector(`input[name="peso${i}"]`);
 
-    if (checkbox && checkbox.checked && peso && parseFloat(peso.value) > 0) {
-      algumSelecionado = true;
+    if (peso && parseFloat(peso.value) > 0) {
+      const li = peso.closest("li");
+      const nomeBolo = [...li.childNodes]
+        .filter(node => node.nodeType === Node.TEXT_NODE)
+        .map(node => node.textContent.trim())
+        .join(" ")
+        .trim();
 
       if (parseFloat(peso.value) < 1.5) {
-        const nomeBolo = checkbox.parentElement.textContent.replace(/[\n\r]/g, "").trim();
         alert(`O bolo "${nomeBolo}" precisa ter no mínimo 1,5 kg.`);
         return;
       }
 
-      const nomeBolo = checkbox.parentElement.textContent.replace(/[\n\r]/g, "").trim();
-      mensagem += `• ${nomeBolo}: ${peso.value}kg%0A`;
+      mensagem += `• ${nomeBolo}: ${peso.value} kg%0A`;
+      algumSelecionado = true;
     }
   }
 
@@ -81,27 +74,62 @@ function enviarWhatsApp() {
     return;
   }
 
-  mensagem += `%0A✅ Conforme indicado no cardápio. Obrigado!`;
+  mensagem += `%0A✅ Aguardo confirmação, obrigado!`;
 
   // Enviar para o WhatsApp
   window.open(`https://wa.me/${numero}?text=${mensagem}`, "_blank");
 }
 
 function mostrarPix() {
-    const pagamento = document.getElementById("pagamento").value;
-    const campoPix = document.getElementById("campo-pix");
-    campoPix.style.display = (pagamento === "pix") ? "block" : "none";
-  }
+  const pagamento = document.getElementById("pagamento").value;
+  const campoPix = document.getElementById("campo-pix");
+  campoPix.style.display = (pagamento === "pix") ? "block" : "none";
+}
 
-  function copiarPix() {
-    const input = document.getElementById("chave-pix");
-    input.select();
-    input.setSelectionRange(0, 99999);
-    document.execCommand("copy");
+function copiarPix() {
+  const input = document.getElementById("chave-pix");
+  input.select();
+  input.setSelectionRange(0, 99999);
+  document.execCommand("copy");
 
-    const feedback = document.getElementById("pix-feedback");
-    feedback.style.display = "inline";
-    setTimeout(() => {
-      feedback.style.display = "none";
-    }, 2000);
+  const feedback = document.getElementById("pix-feedback");
+  feedback.style.display = "inline";
+  setTimeout(() => {
+    feedback.style.display = "none";
+  }, 2000);
+}
+function increaseWeight(inputName) {
+  const input = document.querySelector(`input[name="${inputName}"]`);
+  if (input) {
+    let currentValue = parseFloat(input.value);
+    if (isNaN(currentValue) || currentValue < 1.5) {
+      input.value = 1.5; // valor inicial
+    } else {
+      input.value = (currentValue + 0.5).toFixed(1);
+    }
   }
+}
+
+function decreaseWeight(inputName) {
+  const input = document.querySelector(`input[name="${inputName}"]`);
+  if (input) {
+    let currentValue = parseFloat(input.value) || 0;
+    if (currentValue >= 2.0) {
+      input.value = (currentValue - 0.5).toFixed(1);
+    } else if (currentValue > 1.5) {
+      input.value = 1.5; // Enforce minimum of 1.5 kg
+    }
+  }
+}  
+
+document.addEventListener('DOMContentLoaded', () => {
+  const dataInput = document.getElementById('data');
+  const hojeMaisDois = new Date();
+  hojeMaisDois.setDate(hojeMaisDois.getDate() + 2);
+
+  const ano = hojeMaisDois.getFullYear();
+  const mes = String(hojeMaisDois.getMonth() + 1).padStart(2, '0');
+  const dia = String(hojeMaisDois.getDate()).padStart(2, '0');
+
+  dataInput.value = `${ano}-${mes}-${dia}`;
+});
