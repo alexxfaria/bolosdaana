@@ -147,24 +147,50 @@ function decreaseWeight(inputName) {
   }
 }  
 
-// Funções para a Pop-up de Reajuste
+/**
+ * Função principal para mostrar a pop-up.
+ * Não verifica o tamanho da tela, então aparecerá em todos os dispositivos.
+ */
 function mostrarPopup() {
-    document.getElementById('popup-reajuste').style.display = 'flex';
+    const popup = document.getElementById('popup-reajuste');
+    
+    // Verifica apenas se a pop-up existe.
+    if (popup) {
+        popup.style.display = 'flex';
+        
+        // OPCIONAL: Salva que a pop-up já foi mostrada (para não reabrir em visitas futuras)
+        localStorage.setItem('avisoVisto', 'true');
+    }
 }
 
+/**
+ * Função para fechar a pop-up e remover o "escutador" de cliques.
+ */
 function fecharPopup() {
     document.getElementById('popup-reajuste').style.display = 'none';
-    // Opcional: Salvar no localStorage para não mostrar de novo
-    // localStorage.setItem('avisoVisto', 'true');
+    
+    // Remove o evento de clique após o usuário fechar a pop-up
+    document.removeEventListener('click', primeiroClique); 
+    document.removeEventListener('scroll', primeiroClique);
+    document.removeEventListener('touchstart', primeiroClique);
 }
 
-// Mostra a pop-up quando a página carregar
-window.onload = function() {
-    // Verifica se o usuário já viu o aviso (se a linha do localStorage estiver descomentada)
-    // if (localStorage.getItem('avisoVisto') !== 'true') {
+/**
+ * Esta função é chamada no PRIMEIRO clique/interação
+ */
+function primeiroClique() {
+    // 1. Mostra a pop-up (se o usuário ainda não tiver visto)
+     if (localStorage.getItem('avisoVisto') !== 'true') { // Use esta linha se estiver usando localStorage
         mostrarPopup();
-    // }
-};
+     }
+
+    // 2. Remove o próprio "escutador" de clique para que a pop-up só abra uma vez
+    document.removeEventListener('click', primeiroClique);
+    document.removeEventListener('scroll', primeiroClique);
+    document.removeEventListener('touchstart', primeiroClique); 
+}
+
+
 
 /**
  * Função para atualizar o preço do quilo do bolo e aplicar
@@ -213,13 +239,19 @@ function atualizarPrecoKilo() {
     }
 }
 
-// Certifique-se de que a função é chamada no carregamento da página
-window.onload = function() {
-    // ... outras funções (como mostrarPopup) ...
+// =================================================================
+// INICIALIZAÇÃO: Define os "escutadores" de eventos
+// =================================================================
+window.addEventListener('load', () => {
+    // Adiciona o "escutador" na tela assim que o site carregar
+    // Ele vai capturar o primeiro CLIQUE, SCROLL ou TOQUE
+    document.addEventListener('click', primeiroClique, { once: true });
+    document.addEventListener('scroll', primeiroClique, { once: true });
+    document.addEventListener('touchstart', primeiroClique, { once: true });
     
-    // CHAMA A FUNÇÃO DE REAJUSTE
+    // Chama a função de reajuste de preço (que não depende do clique)
     atualizarPrecoKilo(); 
-};
+});
 
 document.addEventListener('DOMContentLoaded', () => {
   const dataInput = document.getElementById('data');
