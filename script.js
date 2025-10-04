@@ -147,6 +147,80 @@ function decreaseWeight(inputName) {
   }
 }  
 
+// Funções para a Pop-up de Reajuste
+function mostrarPopup() {
+    document.getElementById('popup-reajuste').style.display = 'flex';
+}
+
+function fecharPopup() {
+    document.getElementById('popup-reajuste').style.display = 'none';
+    // Opcional: Salvar no localStorage para não mostrar de novo
+    // localStorage.setItem('avisoVisto', 'true');
+}
+
+// Mostra a pop-up quando a página carregar
+window.onload = function() {
+    // Verifica se o usuário já viu o aviso (se a linha do localStorage estiver descomentada)
+    // if (localStorage.getItem('avisoVisto') !== 'true') {
+        mostrarPopup();
+    // }
+};
+
+/**
+ * Função para atualizar o preço do quilo do bolo e aplicar
+ * destaque em vermelho por 10 dias após o reajuste.
+ */
+function atualizarPrecoKilo() {
+    // 1. Definições de Datas
+    // Data de Início do Reajuste: 01/11/2025 (Mês 10, pois JS conta de 0 a 11)
+    const dataReajuste = new Date(2025, 10, 1); 
+    
+    // Data de Fim do Destaque (10 dias após o reajuste): 11/11/2025
+    // Usamos o dia 11 para que o destaque dure até o final do dia 10.
+    const dataFimDestaque = new Date(2025, 10, 11);
+    
+    // Data e hora atuais
+    const dataAtual = new Date();
+    
+    // 2. Pegue o elemento HTML
+    const precoElemento = document.getElementById('preco-kilo');
+    
+    if (!precoElemento) return; // Garante que o elemento existe antes de prosseguir
+
+    // 3. Lógica do Reajuste
+    if (dataAtual >= dataReajuste) {
+        // Se a data do reajuste já chegou (ou passou)
+        precoElemento.textContent = 'R$ 70,00';
+        
+        // 4. Lógica do Destaque Vermelho
+        // Verifica se a data atual está entre 01/11 e 10/11
+        if (dataAtual < dataFimDestaque) {
+            // Aplica a cor de destaque (vermelho para aviso)
+            precoElemento.style.color = 'crimson'; 
+            precoElemento.style.fontWeight = 'bold'; // Reforça o destaque
+            
+        } else {
+            // Se já passou o período de 10 dias, remove o destaque
+            // (Você pode definir a cor normal do seu site aqui, se precisar)
+            precoElemento.style.color = ''; // Volta à cor padrão do seu CSS (ou defina uma cor)
+            precoElemento.style.fontWeight = ''; 
+        }
+
+    } else {
+        // Antes do reajuste: mantém o preço antigo e cor normal
+        precoElemento.textContent = 'R$ 65,00';
+        precoElemento.style.color = ''; 
+    }
+}
+
+// Certifique-se de que a função é chamada no carregamento da página
+window.onload = function() {
+    // ... outras funções (como mostrarPopup) ...
+    
+    // CHAMA A FUNÇÃO DE REAJUSTE
+    atualizarPrecoKilo(); 
+};
+
 document.addEventListener('DOMContentLoaded', () => {
   const dataInput = document.getElementById('data');
   const hojeMaisDois = new Date();

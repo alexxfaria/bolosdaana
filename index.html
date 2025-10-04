@@ -10,13 +10,41 @@
 
 <body>
 
+  <div id="popup-reajuste" class="popup-overlay">
+      <div class="popup-content">
+          <span class="popup-close" onclick="fecharPopup()">&times;</span>
+          <h3 style="color: #FFD700; margin-top: 0; font-size: 1.4em;">🚨 Aviso Importante 🚨</h3>
+          <p style="font-size: 1.1em; line-height: 1.5;">
+              Prezados clientes,
+          </p>
+          <p style="font-size: 1.1em; line-height: 1.5;">
+              Informamos que, devido ao aumento no custo das matérias-primas, o valor do **quilo do bolo** será reajustado para **R$ 70,00** a partir do dia **01/11/2025**.
+          </p>
+          <p style="font-size: 1.1em; font-weight: bold; color: #f0f0f0;">
+              Aproveite para fazer sua encomenda agora e garantir o preço atual de R$ 65,00!
+          </p>
+          <button onclick="fecharPopup()" style="
+              background-color: #22c55e; 
+              color: white; 
+              border: none; 
+              padding: 10px 20px; 
+              border-radius: 6px; 
+              cursor: pointer; 
+              font-size: 1em; 
+              margin-top: 15px;
+          ">
+              Entendi, quero encomendar!
+          </button>
+      </div>
+  </div>
+ 
   <header style="display: flex; align-items: center; gap: 20px; justify-content: center;"><img src="logobolodana.png"
       alt="Logo Bolos da Ana" style="width: 180px; height: auto;">
     <h1 style="margin: 0;">Cardápio de Bolos</h1>
   </header>
 
   <div class="preco">Valor do kg:<br>
-    <span class="valor-destaque">R$ 65,00</span>
+     <span class="valor-destaque" id="preco-kilo">R$ 65,00</span>
   </div>
 
   <section>
