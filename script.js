@@ -181,7 +181,7 @@ function fecharPopup() {
 function primeiroClique() {
     // 1. Mostra a pop-up (se o usuário ainda não tiver visto)
      if (localStorage.getItem('avisoVisto') !== 'true') { // Use esta linha se estiver usando localStorage
-        mostrarPopup();
+        // mostrarPopup();
      }
 
     // 2. Remove o próprio "escutador" de clique para que a pop-up só abra uma vez
@@ -264,3 +264,4 @@ document.addEventListener('DOMContentLoaded', () => {
 
   dataInput.value = `${ano}-${mes}-${dia}`;
 });
+
