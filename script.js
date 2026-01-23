@@ -253,15 +253,16 @@ window.addEventListener('load', () => {
     atualizarPrecoKilo(); 
 });
 
-document.addEventListener('DOMContentLoaded', () => {
-  const dataInput = document.getElementById('data');
-  const hojeMaisDois = new Date();
-  hojeMaisDois.setDate(hojeMaisDois.getDate() + 2);
+// document.addEventListener('DOMContentLoaded', () => {
+//   const dataInput = document.getElementById('data');
+//   const hojeMaisDois = new Date();
+//   hojeMaisDois.setDate(hojeMaisDois.getDate() + 2);
 
-  const ano = hojeMaisDois.getFullYear();
-  const mes = String(hojeMaisDois.getMonth() + 1).padStart(2, '0');
-  const dia = String(hojeMaisDois.getDate()).padStart(2, '0');
+//   const ano = hojeMaisDois.getFullYear();
+//   const mes = String(hojeMaisDois.getMonth() + 1).padStart(2, '0');
+//   const dia = String(hojeMaisDois.getDate()).padStart(2, '0');
 
-  dataInput.value = `${ano}-${mes}-${dia}`;
-});
+//   dataInput.value = `${ano}-${mes}-${dia}`;
+// });
+
 
