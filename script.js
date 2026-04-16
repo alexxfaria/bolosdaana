@@ -6,47 +6,44 @@ function enviarWhatsApp(event) {
   const pagamento = document.getElementById("pagamento").value;
   const valorPix = document.getElementById("valor-pix")?.value.trim();
 
-  // Limpa mensagens de erro antes da validação
-  document.getElementById('nome-error').textContent = "";
-  document.getElementById('data-error').textContent = "";
-  document.getElementById('pagamento-error').textContent = "";
+  document.getElementById("nome-error").textContent = "";
+  document.getElementById("data-error").textContent = "";
+  document.getElementById("pagamento-error").textContent = "";
 
   let valido = true;
 
   if (!nome) {
-    document.getElementById('nome-error').textContent = "Por favor, preencha seu nome.";
+    document.getElementById("nome-error").textContent = "Por favor, preencha seu nome.";
     valido = false;
   }
 
   if (!data) {
-    document.getElementById('data-error').textContent = "Por favor, selecione a data da retirada.";
+    document.getElementById("data-error").textContent = "Por favor, selecione a data da retirada.";
     valido = false;
   }
 
   if (!pagamento) {
-    document.getElementById('pagamento-error').textContent = "Por favor, selecione a forma de pagamento.";
+    document.getElementById("pagamento-error").textContent = "Por favor, selecione a forma de pagamento.";
     valido = false;
   }
 
-  // Validação dos bolos selecionados e pesos mínimos
   let algumSelecionado = false;
-  let mensagem = `Olá, gostaria de fazer um pedido:%0A`;
+  let mensagem = "Olá, gostaria de fazer um pedido:%0A";
 
   if (!valido) {
-    // Rolar até o primeiro erro e focar no campo correspondente
-    const campos = ['nome', 'data', 'pagamento'];
+    const campos = ["nome", "data", "pagamento"];
     for (const id of campos) {
-      const erroEl = document.getElementById(id + '-error');
+      const erroEl = document.getElementById(`${id}-error`);
       if (erroEl && erroEl.textContent) {
         const campo = document.getElementById(id);
         if (campo) {
-          campo.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          campo.scrollIntoView({ behavior: "smooth", block: "center" });
           campo.focus();
         }
-        break; // só rola para o primeiro erro
+        break;
       }
     }
-    return; // para envio
+    return;
   }
 
   if (nome) {
@@ -60,32 +57,39 @@ function enviarWhatsApp(event) {
   if (pagamento) {
     let forma = "";
     switch (pagamento) {
-      case "pix": forma = "PIX"; break;
-      case "credito": forma = "Cartão de crédito"; break;
-      case "debito": forma = "Cartão de débito"; break;
-      case "dinheiro": forma = "Dinheiro"; break;
+      case "pix":
+        forma = "PIX";
+        break;
+      case "credito":
+        forma = "Cartão de crédito";
+        break;
+      case "debito":
+        forma = "Cartão de débito";
+        break;
+      case "dinheiro":
+        forma = "Dinheiro";
+        break;
+      default:
+        forma = pagamento;
+        break;
     }
+
     mensagem += `%0A💰 Forma de pagamento: ${forma}`;
     if (pagamento === "pix" && valorPix) {
       mensagem += `%0A💵 Valor via PIX: R$ ${valorPix}`;
     }
   }
 
-  mensagem += `%0A%0A🍰 Bolos encomendados:%0A`;
+  mensagem += "%0A%0A🎂 Bolos encomendados:%0A";
 
-  for (let i = 1; i <= 21; i++) {
-    const peso = document.querySelector(`input[name="peso${i}"]`);
-
-    if (peso && parseFloat(peso.value) > 0) {
+  const pesos = document.querySelectorAll('input[name^="peso"]');
+  for (const peso of pesos) {
+    if (parseFloat(peso.value) > 0) {
       const li = peso.closest("li");
-      const nomeBolo = [...li.childNodes]
-        .filter(node => node.nodeType === Node.TEXT_NODE)
-        .map(node => node.textContent.trim())
-        .join(" ")
-        .trim();
+      const nomeBolo = li.querySelector(".flavor-name")?.textContent.trim() || "";
 
       if (parseFloat(peso.value) < 1.5) {
-        alert(`O bolo "${nomeBolo}" precisa ter no mínimo 1,5 kg.`); // Esse alerta você pode adaptar depois para uma mensagem inline
+        alert(`O bolo "${nomeBolo}" precisa ter no mínimo 1,5 kg.`);
         return;
       }
 
@@ -95,20 +99,18 @@ function enviarWhatsApp(event) {
   }
 
   if (!algumSelecionado) {
-    alert("Selecione pelo menos um bolo com o peso mínimo de 1,5 kg."); // Também pode adaptar para mensagem inline
+    alert("Selecione pelo menos um bolo com o peso mínimo de 1,5 kg.");
     return;
   }
 
-  mensagem += `%0A✅ Aguardo confirmação, obrigado!`;
-
-  // Enviar para o WhatsApp
+  mensagem += "%0A✅ Aguardo confirmação, obrigado!";
   window.open(`https://wa.me/${numero}?text=${mensagem}`, "_blank");
 }
 
 function mostrarPix() {
   const pagamento = document.getElementById("pagamento").value;
   const campoPix = document.getElementById("campo-pix");
-  campoPix.style.display = (pagamento === "pix") ? "block" : "none";
+  campoPix.style.display = pagamento === "pix" ? "block" : "none";
 }
 
 function copiarPix() {
@@ -123,12 +125,13 @@ function copiarPix() {
     feedback.style.display = "none";
   }, 2000);
 }
+
 function increaseWeight(inputName) {
   const input = document.querySelector(`input[name="${inputName}"]`);
   if (input) {
-    let currentValue = parseFloat(input.value);
+    const currentValue = parseFloat(input.value);
     if (isNaN(currentValue) || currentValue < 1.5) {
-      input.value = 1.5; // valor inicial
+      input.value = 1.5;
     } else {
       input.value = (currentValue + 0.5).toFixed(1);
     }
@@ -138,132 +141,80 @@ function increaseWeight(inputName) {
 function decreaseWeight(inputName) {
   const input = document.querySelector(`input[name="${inputName}"]`);
   if (input) {
-    let currentValue = parseFloat(input.value) || 0;
+    const currentValue = parseFloat(input.value) || 0;
     if (currentValue >= 2.0) {
       input.value = (currentValue - 0.5).toFixed(1);
     } else if (currentValue > 1.5) {
-      input.value = 1.5; // Enforce minimum of 1.5 kg
+      input.value = 1.5;
     }
   }
-}  
+}
 
-/**
- * Função principal para mostrar a pop-up.
- * Não verifica o tamanho da tela, então aparecerá em todos os dispositivos.
- */
 function mostrarPopup() {
-    const popup = document.getElementById('popup-reajuste');
-    
-    // Verifica apenas se a pop-up existe.
-    if (popup) {
-        popup.style.display = 'flex';
-        
-        // OPCIONAL: Salva que a pop-up já foi mostrada (para não reabrir em visitas futuras)
-        localStorage.setItem('avisoVisto', 'true');
-    }
+  const popup = document.getElementById("popup-reajuste");
+  if (popup) {
+    popup.style.display = "flex";
+    localStorage.setItem("avisoVisto", "true");
+  }
 }
 
-/**
- * Função para fechar a pop-up e remover o "escutador" de cliques.
- */
 function fecharPopup() {
-    document.getElementById('popup-reajuste').style.display = 'none';
-    
-    // Remove o evento de clique após o usuário fechar a pop-up
-    document.removeEventListener('click', primeiroClique); 
-    document.removeEventListener('scroll', primeiroClique);
-    document.removeEventListener('touchstart', primeiroClique);
+  document.getElementById("popup-reajuste").style.display = "none";
+  document.removeEventListener("click", primeiroClique);
+  document.removeEventListener("scroll", primeiroClique);
+  document.removeEventListener("touchstart", primeiroClique);
 }
 
-/**
- * Esta função é chamada no PRIMEIRO clique/interação
- */
 function primeiroClique() {
-    // 1. Mostra a pop-up (se o usuário ainda não tiver visto)
-     if (localStorage.getItem('avisoVisto') !== 'true') { // Use esta linha se estiver usando localStorage
-        // mostrarPopup();
-     }
+  if (localStorage.getItem("avisoVisto") !== "true") {
+    // mostrarPopup();
+  }
 
-    // 2. Remove o próprio "escutador" de clique para que a pop-up só abra uma vez
-    document.removeEventListener('click', primeiroClique);
-    document.removeEventListener('scroll', primeiroClique);
-    document.removeEventListener('touchstart', primeiroClique); 
+  document.removeEventListener("click", primeiroClique);
+  document.removeEventListener("scroll", primeiroClique);
+  document.removeEventListener("touchstart", primeiroClique);
 }
 
-
-
-/**
- * Função para atualizar o preço do quilo do bolo e aplicar
- * destaque em vermelho por 10 dias após o reajuste.
- */
 function atualizarPrecoKilo() {
-    // 1. Definições de Datas
-    // Data de Início do Reajuste: 01/11/2025 (Mês 10, pois JS conta de 0 a 11)
-    const dataReajuste = new Date(2025, 10, 1); 
-    
-    // Data de Fim do Destaque (10 dias após o reajuste): 11/11/2025
-    // Usamos o dia 11 para que o destaque dure até o final do dia 10.
-    const dataFimDestaque = new Date(2025, 10, 11);
-    
-    // Data e hora atuais
-    const dataAtual = new Date();
-    
-    // 2. Pegue o elemento HTML
-    const precoElemento = document.getElementById('preco-kilo');
-    
-    if (!precoElemento) return; // Garante que o elemento existe antes de prosseguir
+  const dataReajuste = new Date(2025, 10, 1);
+  const dataFimDestaque = new Date(2025, 10, 11);
+  const dataAtual = new Date();
+  const precoElemento = document.getElementById("preco-kilo");
 
-    // 3. Lógica do Reajuste
-    if (dataAtual >= dataReajuste) {
-        // Se a data do reajuste já chegou (ou passou)
-        precoElemento.textContent = 'R$ 70,00';
-        
-        // 4. Lógica do Destaque Vermelho
-        // Verifica se a data atual está entre 01/11 e 10/11
-        if (dataAtual < dataFimDestaque) {
-            // Aplica a cor de destaque (vermelho para aviso)
-            precoElemento.style.color = 'crimson'; 
-            precoElemento.style.fontWeight = 'bold'; // Reforça o destaque
-            
-        } else {
-            // Se já passou o período de 10 dias, remove o destaque
-            // (Você pode definir a cor normal do seu site aqui, se precisar)
-            precoElemento.style.color = ''; // Volta à cor padrão do seu CSS (ou defina uma cor)
-            precoElemento.style.fontWeight = ''; 
-        }
+  if (!precoElemento) {
+    return;
+  }
 
+  if (dataAtual >= dataReajuste) {
+    precoElemento.textContent = "R$ 70,00";
+
+    if (dataAtual < dataFimDestaque) {
+      precoElemento.style.color = "#ffe0de";
+      precoElemento.style.fontWeight = "700";
     } else {
-        // Antes do reajuste: mantém o preço antigo e cor normal
-        precoElemento.textContent = 'R$ 65,00';
-        precoElemento.style.color = ''; 
+      precoElemento.style.color = "";
+      precoElemento.style.fontWeight = "";
     }
+  } else {
+    precoElemento.textContent = "R$ 65,00";
+    precoElemento.style.color = "";
+  }
 }
 
-// =================================================================
-// INICIALIZAÇÃO: Define os "escutadores" de eventos
-// =================================================================
-window.addEventListener('load', () => {
-    // Adiciona o "escutador" na tela assim que o site carregar
-    // Ele vai capturar o primeiro CLIQUE, SCROLL ou TOQUE
-    document.addEventListener('click', primeiroClique, { once: true });
-    document.addEventListener('scroll', primeiroClique, { once: true });
-    document.addEventListener('touchstart', primeiroClique, { once: true });
-    
-    // Chama a função de reajuste de preço (que não depende do clique)
-    atualizarPrecoKilo(); 
+window.addEventListener("load", () => {
+  document.addEventListener("click", primeiroClique, { once: true });
+  document.addEventListener("scroll", primeiroClique, { once: true });
+  document.addEventListener("touchstart", primeiroClique, { once: true });
+  atualizarPrecoKilo();
 });
 
-document.addEventListener('DOMContentLoaded', () => {
-  const dataInput = document.getElementById('data');
-  const hojeMaisDois = new Date();
-  hojeMaisDois.setDate(hojeMaisDois.getDate() + 0);
+document.addEventListener("DOMContentLoaded", () => {
+  const dataInput = document.getElementById("data");
+  const hoje = new Date();
 
-  const ano = hojeMaisDois.getFullYear();
-  const mes = String(hojeMaisDois.getMonth() + 1).padStart(2, '0');
-  const dia = String(hojeMaisDois.getDate()).padStart(2, '0');
+  const ano = hoje.getFullYear();
+  const mes = String(hoje.getMonth() + 1).padStart(2, "0");
+  const dia = String(hoje.getDate()).padStart(2, "0");
 
   dataInput.value = `${ano}-${mes}-${dia}`;
 });
-
-
-

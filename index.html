@@ -1,274 +1,306 @@
 <!DOCTYPE html>
-<html lang="pt-br">
-
+<html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Cardápio de bolos da Bolos da Ana com sabores, pesos e pedido direto pelo WhatsApp.">
   <title>Cardápio - Bolos da Ana</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Fraunces:opsz,wght@9..144,600;9..144,700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
-
-  <div id="popup-reajuste" class="popup-overlay">
-      <div class="popup-content">
-          <span class="popup-close" onclick="fecharPopup()">&times;</span>
-          <h3 style="color: #FFD700; margin-top: 0; font-size: 1.4em;">🚨 Aviso Importante 🚨</h3>
-          <p style="font-size: 1.1em; line-height: 1.5;">
-              Prezados clientes,
-          </p>
-          <p style="font-size: 1.1em; line-height: 1.5;">
-              Informamos que, devido ao aumento no custo das matérias-primas, o valor do **quilo do bolo** será reajustado para **R$ 70,00** a partir do dia **01/11/2025**.
-          </p>
-          <p style="font-size: 1.1em; font-weight: bold; color: #f0f0f0;">
-              Aproveite para fazer sua encomenda agora e garantir o preço atual de R$ 65,00!
-          </p>
-          <button onclick="fecharPopup()" style="
-              background-color: #22c55e; 
-              color: white; 
-              border: none; 
-              padding: 10px 20px; 
-              border-radius: 6px; 
-              cursor: pointer; 
-              font-size: 1em; 
-              margin-top: 15px;
-          ">
-              Entendi, quero encomendar!
-          </button>
-      </div>
-  </div>
- 
-  <header style="display: flex; align-items: center; gap: 20px; justify-content: center;"><img src="logobolodana.png"
-      alt="Logo Bolos da Ana" style="width: 180px; height: auto;">
-    <h1 style="margin: 0;">Cardápio de Bolos</h1>
-  </header>
-
-  <div class="preco">Valor do kg:<br>
-     <span class="valor-destaque" id="preco-kilo">R$ 70,00</span>
-  </div>
-
-  <section>
-    <h2>Com chocolate:</h2>
-    <ul style="list-style: none; padding: 0;">
-      <li>Ninho com chocolate
-        <div class="controle-peso">
-          <button onclick="decreaseWeight('peso1')">-</button>
-          <input type="number" name="peso1" min="1.5" step="0.5" placeholder="kg">
-          <button onclick="increaseWeight('peso1')">+</button>
-        </div>
-      </li>
-      <li>Ninho com Nutella
-        <div class="controle-peso">
-          <button onclick="decreaseWeight('peso2')">-</button>
-          <input type="number" name="peso2" min="1.5" step="0.5" placeholder="kg">
-          <button onclick="increaseWeight('peso2')">+</button>
-        </div>
-      </li>
-      <li>Ninho trufado com Ouro Branco
-        <div class="controle-peso">
-          <button onclick="decreaseWeight('peso3')">-</button>
-          <input type="number" name="peso3" min="1.5" step="0.5" placeholder="kg">
-          <button onclick="increaseWeight('peso3')">+</button>
-        </div>
-      </li>
-      <li>Ninho trufado com Sonho de Valsa
-        <div class="controle-peso">
-          <button onclick="decreaseWeight('peso4')">-</button>
-          <input type="number" name="peso4" min="1.5" step="0.5" placeholder="kg">
-          <button onclick="increaseWeight('peso4')">+</button>
-        </div>
-      </li>
-    </ul>
-  </section>
-
-  <section>
-    <h2>Com massa de chocolate:</h2>
-    <ul style="list-style: none; padding: 0;">
-      <li>Brigadeiro
-        <div class="controle-peso">
-          <button onclick="decreaseWeight('peso5')">-</button>
-          <input type="number" name="peso5" min="1.5" step="0.5" placeholder="kg">
-          <button onclick="increaseWeight('peso5')">+</button>
-        </div>
-      </li>
-      <li>Prestígio
-        <div class="controle-peso">
-          <button onclick="decreaseWeight('peso6')">-</button>
-          <input type="number" name="peso6" min="1.5" step="0.5" placeholder="kg">
-          <button onclick="increaseWeight('peso6')">+</button>
-        </div>
-      </li>
-      <li>Casadinho
-        <div class="controle-peso">
-          <button onclick="decreaseWeight('peso7')">-</button>
-          <input type="number" name="peso7" min="1.5" step="0.5" placeholder="kg">
-          <button onclick="increaseWeight('peso7')">+</button>
-        </div>
-      </li>
-      <li>Floresta Negra
-        <div class="controle-peso">
-          <button onclick="decreaseWeight('peso8')">-</button>
-          <input type="number" name="peso8" min="1.5" step="0.5" placeholder="kg">
-          <button onclick="increaseWeight('peso8')">+</button>
-        </div>
-      </li>
-    </ul>
-  </section>
-
-  <section>
-    <h2>Com frutas:</h2>
-    <ul style="list-style: none; padding: 0;">
-      <li>Abacaxi com coco
-        <div class="controle-peso">
-          <button onclick="decreaseWeight('peso9')">-</button>
-          <input type="number" name="peso9" min="1.5" step="0.5" placeholder="kg">
-          <button onclick="increaseWeight('peso9')">+</button>
-        </div>
-      </li>
-      <li>Morango com suspiros
-        <div class="controle-peso">
-          <button onclick="decreaseWeight('peso10')">-</button>
-          <input type="number" name="peso10" min="1.5" step="0.5" placeholder="kg">
-          <button onclick="increaseWeight('peso10')">+</button>
-        </div>
-      </li>
-      <li>Ninho com frutas vermelhas e morango
-        <div class="controle-peso">
-          <button onclick="decreaseWeight('peso11')">-</button>
-          <input type="number" name="peso11" min="1.5" step="0.5" placeholder="kg">
-          <button onclick="increaseWeight('peso11')">+</button>
-        </div>
-      </li>
-      <li>Ninho com frutas vermelhas
-        <div class="controle-peso">
-          <button onclick="decreaseWeight('peso12')">-</button>
-          <input type="number" name="peso12" min="1.5" step="0.5" placeholder="kg">
-          <button onclick="increaseWeight('peso12')">+</button>
-        </div>
-      </li>
-      <li>Ninho com morango
-        <div class="controle-peso">
-          <button onclick="decreaseWeight('peso13')">-</button>
-          <input type="number" name="peso13" min="1.5" step="0.5" placeholder="kg">
-          <button onclick="increaseWeight('peso13')">+</button>
-        </div>
-      </li>
-      <li>Ninho com morango e Nutella
-        <div class="controle-peso">
-          <button onclick="decreaseWeight('peso14')">-</button>
-          <input type="number" name="peso14" min="1.5" step="0.5" placeholder="kg">
-          <button onclick="increaseWeight('peso14')">+</button>
-        </div>
-      </li>
-      <li>Creme de ninho com abacaxi e pêssego
-        <div class="controle-peso">
-          <button onclick="decreaseWeight('peso15')">-</button>
-          <input type="number" name="peso15" min="1.5" step="0.5" placeholder="kg">
-          <button onclick="increaseWeight('peso15')">+</button>
-        </div>
-      </li>
-      <li>Quatro leites com morango
-        <div class="controle-peso">
-          <button onclick="decreaseWeight('peso16')">-</button>
-          <input type="number" name="peso16" min="1.5" step="0.5" placeholder="kg">
-          <button onclick="increaseWeight('peso16')">+</button>
-        </div>
-      </li>
-      <li>Quatro leites com abacaxi
-        <div class="controle-peso">
-          <button onclick="decreaseWeight('peso17')">-</button>
-          <input type="number" name="peso17" min="1.5" step="0.5" placeholder="kg">
-          <button onclick="increaseWeight('peso17')">+</button>
-        </div>
-      </li>
-      <li>Laka com morango
-        <div class="controle-peso">
-          <button onclick="decreaseWeight('peso18')">-</button>
-          <input type="number" name="peso18" min="1.5" step="0.5" placeholder="kg">
-          <button onclick="increaseWeight('peso18')">+</button>
-        </div>
-      </li>
-      <li>Doce de leite com ameixa e abacaxi
-        <div class="controle-peso">
-          <button onclick="decreaseWeight('peso19')">-</button>
-          <input type="number" name="peso19" min="1.5" step="0.5" placeholder="kg">
-          <button onclick="increaseWeight('peso19')">+</button>
-        </div>
-      </li>
-	  <li>Maracujá com brigadeiro
-        <div class="controle-peso">
-          <button onclick="decreaseWeight('peso22')">-</button>
-          <input type="number" name="peso22" min="1.5" step="0.5" placeholder="kg">
-          <button onclick="increaseWeight('peso22')">+</button>
-        </div>
-      </li>
-    </ul>
-  </section>
-
-  <section>
-    <h2>Crocantes:</h2>
-    <ul style="list-style: none; padding: 0;">
-      <li>Nozes com crocante
-        <div class="controle-peso">
-          <button onclick="decreaseWeight('peso20')">-</button>
-          <input type="number" name="peso20" min="1.5" step="0.5" placeholder="kg">
-          <button onclick="increaseWeight('peso20')">+</button>
-        </div>
-      </li>
-      <li>Strogonof de nozes
-        <div class="controle-peso">
-          <button onclick="decreaseWeight('peso21')">-</button>
-          <input type="number" name="peso21" min="1.5" step="0.5" placeholder="kg">
-          <button onclick="increaseWeight('peso21')">+</button>
-        </div>
-      </li>
-    </ul>
-  </section>
-
-
-  <div class="info">
-    <p>• Pedido mínimo de 1,5 kg.</p>
-    <p>• O peso dos bolos pode variar de 100 a 300g, de acordo com o recheio escolhido.</p>
-    <!-- <p>• Aceitamos encomendas com 2 dias de antecedência e pagamento de 50% do valor.</p> -->
-  </div>
-
-  <!-- <div class="contato">
-	  <a href="https://wa.me/5543999608255" target="_blank" class="link-contato">
-		Faça sua encomenda: <br>
-        📞 (43) 99960-8255
-	  </a>
-  </div> -->
-  <div class="pedido-info">
-    <label for="nome">Nome:</label>
-    <input type="text" id="nome" name="nome" placeholder="Digite seu nome" required>
-    <span class="error-message" id="nome-error"></span>
-
-    <label for="data">Data da retirada:</label>
-    <input type="date" id="data" name="data" required>
-    <span class="error-message" id="data-error"></span>
-
-    <label for="pagamento">Forma de pagamento:</label>
-    <select id="pagamento" name="pagamento" onchange="mostrarPix()">
-      <option value="">Selecione</option>
-      <option value="pix">PIX</option>
-      <option value="credito">Cartão de crédito</option>
-      <option value="debito">Cartão de débito</option>
-      <option value="dinheiro">Dinheiro</option>
-    </select>
-    <span class="error-message" id="pagamento-error"></span>
-
-    <div id="campo-pix" style="display: none;">
-      <label for="chave-pix">Chave PIX (copiar e colar):</label>
-      <input type="text" id="chave-pix" value="43999608255" readonly onclick="copiarPix()" style="cursor: pointer;">
-      <small id="pix-feedback" style="color: green; display: none;">Copiado!</small>
+  <div id="popup-reajuste" class="popup-overlay" role="dialog" aria-modal="true" aria-labelledby="popup-title">
+    <div class="popup-content">
+      <button type="button" class="popup-close" onclick="fecharPopup()" aria-label="Fechar aviso">&times;</button>
+      <p class="popup-eyebrow">Aviso importante</p>
+      <h3 id="popup-title">Atualização no valor do quilo</h3>
+      <p>Prezados clientes, devido ao aumento no custo das matérias-primas, o valor do quilo do bolo será reajustado para <strong>R$ 70,00</strong> a partir de <strong>01/11/2025</strong>.</p>
+      <p class="popup-highlight">Aproveite para fazer sua encomenda agora e garantir o preço atual de R$ 65,00.</p>
+      <button type="button" class="popup-action" onclick="fecharPopup()">Entendi, quero encomendar</button>
     </div>
   </div>
 
-  <a href="#" onclick="enviarWhatsApp(event)" class="botao-whatsapp">
-    Enviar pedido via WhatsApp
-  </a>
+  <div class="page-shell">
+    <header class="hero">
+      <div class="hero-brand">
+        <img src="logobolodana.png" alt="Logo Bolos da Ana" class="hero-logo">
+        <div class="hero-copy">
+          <p class="eyebrow">Bolos por encomenda</p>
+          <h1>Cardápio de Bolos</h1>
+          <p class="hero-text">Escolha os sabores, informe o peso e envie tudo pelo WhatsApp sem perder a praticidade do site atual.</p>
+        </div>
+      </div>
+
+      <div class="hero-summary">
+        <div class="preco">
+          <span class="preco-label">Valor do kg</span>
+          <span class="valor-destaque" id="preco-kilo">R$ 70,00</span>
+        </div>
+
+        <div class="hero-notes">
+          <p>Pedido mínimo de 1,5 kg</p>
+          <p>Variação de peso entre 100 g e 300 g conforme o recheio</p>
+        </div>
+      </div>
+    </header>
+
+    <main class="content-grid">
+      <div class="menu-panel">
+        <section class="menu-section">
+          <div class="section-heading">
+            <p class="section-tag">Clássicos</p>
+            <h2>Com chocolate</h2>
+          </div>
+          <ul class="flavor-list">
+            <li>
+              <span class="flavor-name">Ninho com chocolate</span>
+              <div class="controle-peso">
+                <button type="button" onclick="decreaseWeight('peso1')">-</button>
+                <input type="number" name="peso1" min="1.5" step="0.5" placeholder="kg">
+                <button type="button" onclick="increaseWeight('peso1')">+</button>
+              </div>
+            </li>
+            <li>
+              <span class="flavor-name">Ninho com Nutella</span>
+              <div class="controle-peso">
+                <button type="button" onclick="decreaseWeight('peso2')">-</button>
+                <input type="number" name="peso2" min="1.5" step="0.5" placeholder="kg">
+                <button type="button" onclick="increaseWeight('peso2')">+</button>
+              </div>
+            </li>
+            <li>
+              <span class="flavor-name">Ninho trufado com Ouro Branco</span>
+              <div class="controle-peso">
+                <button type="button" onclick="decreaseWeight('peso3')">-</button>
+                <input type="number" name="peso3" min="1.5" step="0.5" placeholder="kg">
+                <button type="button" onclick="increaseWeight('peso3')">+</button>
+              </div>
+            </li>
+            <li>
+              <span class="flavor-name">Ninho trufado com Sonho de Valsa</span>
+              <div class="controle-peso">
+                <button type="button" onclick="decreaseWeight('peso4')">-</button>
+                <input type="number" name="peso4" min="1.5" step="0.5" placeholder="kg">
+                <button type="button" onclick="increaseWeight('peso4')">+</button>
+              </div>
+            </li>
+          </ul>
+        </section>
+
+        <section class="menu-section">
+          <div class="section-heading">
+            <p class="section-tag">Intensos</p>
+            <h2>Com massa de chocolate</h2>
+          </div>
+          <ul class="flavor-list">
+            <li>
+              <span class="flavor-name">Brigadeiro</span>
+              <div class="controle-peso">
+                <button type="button" onclick="decreaseWeight('peso5')">-</button>
+                <input type="number" name="peso5" min="1.5" step="0.5" placeholder="kg">
+                <button type="button" onclick="increaseWeight('peso5')">+</button>
+              </div>
+            </li>
+            <li>
+              <span class="flavor-name">Prestígio</span>
+              <div class="controle-peso">
+                <button type="button" onclick="decreaseWeight('peso6')">-</button>
+                <input type="number" name="peso6" min="1.5" step="0.5" placeholder="kg">
+                <button type="button" onclick="increaseWeight('peso6')">+</button>
+              </div>
+            </li>
+            <li>
+              <span class="flavor-name">Casadinho</span>
+              <div class="controle-peso">
+                <button type="button" onclick="decreaseWeight('peso7')">-</button>
+                <input type="number" name="peso7" min="1.5" step="0.5" placeholder="kg">
+                <button type="button" onclick="increaseWeight('peso7')">+</button>
+              </div>
+            </li>
+            <li>
+              <span class="flavor-name">Floresta Negra</span>
+              <div class="controle-peso">
+                <button type="button" onclick="decreaseWeight('peso8')">-</button>
+                <input type="number" name="peso8" min="1.5" step="0.5" placeholder="kg">
+                <button type="button" onclick="increaseWeight('peso8')">+</button>
+              </div>
+            </li>
+          </ul>
+        </section>
+
+        <section class="menu-section">
+          <div class="section-heading">
+            <p class="section-tag">Leves</p>
+            <h2>Com frutas</h2>
+          </div>
+          <ul class="flavor-list">
+            <li>
+              <span class="flavor-name">Abacaxi com coco</span>
+              <div class="controle-peso">
+                <button type="button" onclick="decreaseWeight('peso9')">-</button>
+                <input type="number" name="peso9" min="1.5" step="0.5" placeholder="kg">
+                <button type="button" onclick="increaseWeight('peso9')">+</button>
+              </div>
+            </li>
+            <li>
+              <span class="flavor-name">Morango com suspiros</span>
+              <div class="controle-peso">
+                <button type="button" onclick="decreaseWeight('peso10')">-</button>
+                <input type="number" name="peso10" min="1.5" step="0.5" placeholder="kg">
+                <button type="button" onclick="increaseWeight('peso10')">+</button>
+              </div>
+            </li>
+            <li>
+              <span class="flavor-name">Ninho com frutas vermelhas e morango</span>
+              <div class="controle-peso">
+                <button type="button" onclick="decreaseWeight('peso11')">-</button>
+                <input type="number" name="peso11" min="1.5" step="0.5" placeholder="kg">
+                <button type="button" onclick="increaseWeight('peso11')">+</button>
+              </div>
+            </li>
+            <li>
+              <span class="flavor-name">Ninho com frutas vermelhas</span>
+              <div class="controle-peso">
+                <button type="button" onclick="decreaseWeight('peso12')">-</button>
+                <input type="number" name="peso12" min="1.5" step="0.5" placeholder="kg">
+                <button type="button" onclick="increaseWeight('peso12')">+</button>
+              </div>
+            </li>
+            <li>
+              <span class="flavor-name">Ninho com morango</span>
+              <div class="controle-peso">
+                <button type="button" onclick="decreaseWeight('peso13')">-</button>
+                <input type="number" name="peso13" min="1.5" step="0.5" placeholder="kg">
+                <button type="button" onclick="increaseWeight('peso13')">+</button>
+              </div>
+            </li>
+            <li>
+              <span class="flavor-name">Ninho com morango e Nutella</span>
+              <div class="controle-peso">
+                <button type="button" onclick="decreaseWeight('peso14')">-</button>
+                <input type="number" name="peso14" min="1.5" step="0.5" placeholder="kg">
+                <button type="button" onclick="increaseWeight('peso14')">+</button>
+              </div>
+            </li>
+            <li>
+              <span class="flavor-name">Creme de ninho com abacaxi e pêssego</span>
+              <div class="controle-peso">
+                <button type="button" onclick="decreaseWeight('peso15')">-</button>
+                <input type="number" name="peso15" min="1.5" step="0.5" placeholder="kg">
+                <button type="button" onclick="increaseWeight('peso15')">+</button>
+              </div>
+            </li>
+            <li>
+              <span class="flavor-name">Quatro leites com morango</span>
+              <div class="controle-peso">
+                <button type="button" onclick="decreaseWeight('peso16')">-</button>
+                <input type="number" name="peso16" min="1.5" step="0.5" placeholder="kg">
+                <button type="button" onclick="increaseWeight('peso16')">+</button>
+              </div>
+            </li>
+            <li>
+              <span class="flavor-name">Quatro leites com abacaxi</span>
+              <div class="controle-peso">
+                <button type="button" onclick="decreaseWeight('peso17')">-</button>
+                <input type="number" name="peso17" min="1.5" step="0.5" placeholder="kg">
+                <button type="button" onclick="increaseWeight('peso17')">+</button>
+              </div>
+            </li>
+            <li>
+              <span class="flavor-name">Laka com morango</span>
+              <div class="controle-peso">
+                <button type="button" onclick="decreaseWeight('peso18')">-</button>
+                <input type="number" name="peso18" min="1.5" step="0.5" placeholder="kg">
+                <button type="button" onclick="increaseWeight('peso18')">+</button>
+              </div>
+            </li>
+            <li>
+              <span class="flavor-name">Doce de leite com ameixa e abacaxi</span>
+              <div class="controle-peso">
+                <button type="button" onclick="decreaseWeight('peso19')">-</button>
+                <input type="number" name="peso19" min="1.5" step="0.5" placeholder="kg">
+                <button type="button" onclick="increaseWeight('peso19')">+</button>
+              </div>
+            </li>
+            <li>
+              <span class="flavor-name">Maracujá com brigadeiro</span>
+              <div class="controle-peso">
+                <button type="button" onclick="decreaseWeight('peso22')">-</button>
+                <input type="number" name="peso22" min="1.5" step="0.5" placeholder="kg">
+                <button type="button" onclick="increaseWeight('peso22')">+</button>
+              </div>
+            </li>
+          </ul>
+        </section>
+
+        <section class="menu-section">
+          <div class="section-heading">
+            <p class="section-tag">Especiais</p>
+            <h2>Crocantes</h2>
+          </div>
+          <ul class="flavor-list">
+            <li>
+              <span class="flavor-name">Nozes com crocante</span>
+              <div class="controle-peso">
+                <button type="button" onclick="decreaseWeight('peso20')">-</button>
+                <input type="number" name="peso20" min="1.5" step="0.5" placeholder="kg">
+                <button type="button" onclick="increaseWeight('peso20')">+</button>
+              </div>
+            </li>
+            <li>
+              <span class="flavor-name">Strogonof de nozes</span>
+              <div class="controle-peso">
+                <button type="button" onclick="decreaseWeight('peso21')">-</button>
+                <input type="number" name="peso21" min="1.5" step="0.5" placeholder="kg">
+                <button type="button" onclick="increaseWeight('peso21')">+</button>
+              </div>
+            </li>
+          </ul>
+        </section>
+      </div>
+
+      <aside class="order-panel">
+        <div class="panel-card info">
+          <h3>Informações do pedido</h3>
+          <p>Os bolos podem variar um pouco no peso final conforme o recheio escolhido.</p>
+          <p>Preencha seus dados e envie o pedido com um toque.</p>
+        </div>
+
+        <div class="panel-card pedido-info">
+          <label for="nome">Nome</label>
+          <input type="text" id="nome" name="nome" placeholder="Digite seu nome" required>
+          <span class="error-message" id="nome-error"></span>
+
+          <label for="data">Data da retirada</label>
+          <input type="date" id="data" name="data" required>
+          <span class="error-message" id="data-error"></span>
+
+          <label for="pagamento">Forma de pagamento</label>
+          <select id="pagamento" name="pagamento" onchange="mostrarPix()">
+            <option value="">Selecione</option>
+            <option value="pix">PIX</option>
+            <option value="credito">Cartão de crédito</option>
+            <option value="debito">Cartão de débito</option>
+            <option value="dinheiro">Dinheiro</option>
+          </select>
+          <span class="error-message" id="pagamento-error"></span>
+
+          <div id="campo-pix" class="pix-box">
+            <label for="chave-pix">Chave PIX</label>
+            <input type="text" id="chave-pix" value="43999608255" readonly onclick="copiarPix()">
+            <small id="pix-feedback">Copiado!</small>
+          </div>
+        </div>
+
+        <a href="#" onclick="enviarWhatsApp(event)" class="botao-whatsapp">
+          Enviar pedido via WhatsApp
+        </a>
+      </aside>
+    </main>
+  </div>
 
   <script src="script.js"></script>
 </body>
-
 </html>

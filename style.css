@@ -1,217 +1,483 @@
-body {
-  font-family: Arial, sans-serif;
-  background-color: #f6e3c3;
-  margin: 0;
-  padding: 0;
-  color: #5a2e1a;
+:root {
+  --bg: #f7efe4;
+  --bg-accent: #f1dcc4;
+  --surface: rgba(255, 252, 247, 0.84);
+  --surface-strong: #fffaf3;
+  --text: #4e2a1f;
+  --muted: #7b5d4f;
+  --primary: #9d4b2f;
+  --primary-dark: #6f2d1a;
+  --secondary: #c8863a;
+  --secondary-soft: #f4d7ab;
+  --line: rgba(111, 45, 26, 0.12);
+  --shadow: 0 18px 60px rgba(102, 51, 31, 0.12);
+  --radius-xl: 28px;
+  --radius-lg: 20px;
+  --radius-md: 14px;
 }
 
-header {
-  text-align: center;
-  padding: 20px;
-}
-
-header img {
-  width: 80px;
-}
-
-h1 {
-  margin: 5px 0;
-  color: #a0381f;
-}
-
-.preco {
-  background-color: #c48c41;
-  text-align: center;
-  padding: 10px;
-  font-size: 1.2em;
-  font-weight: bold;
-  color: #fff;
-  margin: 10px 20px;
-  border-radius: 5px;
-}
-
-section {
-  margin: 15px;
-}
-
-h2 {
-  font-size: 1.1em;
-  border-bottom: 2px solid #a0381f;
-  padding-bottom: 3px;
-  margin-bottom: 5px;
-  color: #a0381f;
-}
-
-ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-
-ul li {
-  margin: 4px 0;
-}
-
-li {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 5px;
-}
-
-.controle-peso {
-  display: flex;
-  align-items: center;
-  gap: 5px;
-}
-
-.controle-peso input {
-  width: 60px;
-  text-align: center;
-}
-
-.info {
-  font-size: 0.85em;
-  padding: 15px;
-  background-color: #fcecd7;
-  margin: 15px;
-  border-radius: 5px;
-}
-
-.contato {
-  text-align: center;
-  margin: 20px;
-  font-size: 1.1em;
-  background-color: #a0381f;
-  color: white;
-  padding: 12px;
-  border-radius: 8px;
-}
-
-.link-contato {
-  color: white;
-  text-decoration: none;
-  font-size: inherit;
-  font-weight: inherit;
-  display: inline-block;
-  width: 100%;
-  height: 100%;
-}
-
-.link-contato:hover {
-  text-decoration: none;
-}
-.valor-destaque {
-  font-size: 1.6em;
-  font-weight: bold;
-}
-
-.botao-whatsapp {
-  display: block;
-  width: 90%;
-  max-width: 400px;
-  margin: 20px auto;
-  padding: 15px 20px;
-  background-color: #a53b22;
-  color: white;
-  text-align: center;
-  text-decoration: none;
-  font-size: 18px;
-  font-weight: bold;
-  border-radius: 10px;
-  border: none;
-  cursor: pointer;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
-  transition: background-color 0.3s ease;
-}
-
-.botao-whatsapp:hover {
-  background-color: #862f1b;
-}
-
-.pedido-info {
-  max-width: 400px;
-  margin: 30px auto;
-  padding: 20px;
-  background-color: #fdf1e7;
-  border-radius: 10px;
+* {
   box-sizing: border-box;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  font-family: "DM Sans", sans-serif;
+  color: var(--text);
+  background:
+    radial-gradient(circle at top left, rgba(255, 255, 255, 0.9), transparent 28%),
+    radial-gradient(circle at right 10% top 12%, rgba(244, 215, 171, 0.85), transparent 24%),
+    linear-gradient(180deg, #f9f1e8 0%, #f3e2cf 48%, #f7efe4 100%);
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background-image:
+    linear-gradient(rgba(157, 75, 47, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(157, 75, 47, 0.03) 1px, transparent 1px);
+  background-size: 28px 28px;
+  mask-image: linear-gradient(180deg, rgba(0, 0, 0, 0.35), transparent 70%);
+}
+
+.page-shell {
+  width: min(1180px, calc(100% - 32px));
+  margin: 0 auto;
+  padding: 32px 0 48px;
+}
+
+.hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1.35fr) minmax(280px, 0.8fr);
+  gap: 24px;
+  align-items: stretch;
+  margin-bottom: 28px;
+}
+
+.hero-brand,
+.hero-summary,
+.menu-section,
+.panel-card,
+.botao-whatsapp {
+  box-shadow: var(--shadow);
+}
+
+.hero-brand,
+.hero-summary,
+.menu-section,
+.panel-card {
+  position: relative;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.65);
+  border-radius: var(--radius-xl);
+  background: var(--surface);
+  backdrop-filter: blur(14px);
+}
+
+.hero-brand {
+  display: grid;
+  grid-template-columns: 180px minmax(0, 1fr);
+  gap: 24px;
+  align-items: center;
+  padding: 30px;
+}
+
+.hero-brand::after,
+.hero-summary::after,
+.menu-section::after,
+.panel-card::after {
+  content: "";
+  position: absolute;
+  inset: auto -60px -60px auto;
+  width: 180px;
+  height: 180px;
+  border-radius: 999px;
+  background: radial-gradient(circle, rgba(200, 134, 58, 0.22), transparent 70%);
+}
+
+.hero-logo {
+  width: 100%;
+  max-width: 180px;
+  height: auto;
+  filter: drop-shadow(0 18px 28px rgba(111, 45, 26, 0.18));
+}
+
+.eyebrow,
+.section-tag,
+.popup-eyebrow,
+.preco-label {
+  margin: 0 0 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--primary);
+}
+
+h1,
+h2,
+h3 {
+  margin: 0;
+  font-family: "Fraunces", serif;
+  line-height: 1.05;
+}
+
+h1 {
+  font-size: clamp(2.2rem, 5vw, 4rem);
+  margin-bottom: 14px;
+}
+
+.hero-text,
+.hero-notes p,
+.panel-card p,
+.popup-content p {
+  margin: 0;
+  line-height: 1.6;
+  color: var(--muted);
+}
+
+.hero-summary {
+  display: grid;
+  align-content: center;
+  gap: 18px;
+  padding: 28px;
+}
+
+.preco {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 22px;
+  border-radius: 22px;
+  background: linear-gradient(135deg, #a65332 0%, #c8863a 100%);
+  color: #fffdf9;
+}
+
+.preco-label {
+  color: rgba(255, 250, 243, 0.82);
+  margin-bottom: 0;
+}
+
+.valor-destaque {
+  font-size: clamp(2rem, 5vw, 3.1rem);
+  font-weight: 700;
+  line-height: 1;
+}
+
+.hero-notes {
+  display: grid;
+  gap: 10px;
+}
+
+.hero-notes p {
+  padding-left: 18px;
+  position: relative;
+}
+
+.hero-notes p::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 10px;
+  width: 8px;
+  height: 8px;
+  border-radius: 999px;
+  background: var(--secondary);
+}
+
+.content-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.35fr) minmax(300px, 0.78fr);
+  gap: 24px;
+  align-items: start;
+}
+
+.menu-panel {
+  display: grid;
+  gap: 18px;
+}
+
+.menu-section {
+  padding: 26px;
+}
+
+.section-heading {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 18px;
+}
+
+h2 {
+  font-size: clamp(1.5rem, 2vw, 2rem);
+}
+
+.flavor-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: 12px;
+}
+
+.flavor-list li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 18px;
+  padding: 14px 16px;
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.58);
+  transition: transform 0.2s ease, border-color 0.2s ease, background-color 0.2s ease;
+}
+
+.flavor-list li:hover {
+  transform: translateY(-1px);
+  border-color: rgba(157, 75, 47, 0.22);
+  background: rgba(255, 255, 255, 0.78);
+}
+
+.flavor-name {
+  font-weight: 500;
+}
+
+.controle-peso {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+.controle-peso button {
+  width: 40px;
+  height: 40px;
+  border: none;
+  border-radius: 12px;
+  background: linear-gradient(180deg, #a65332 0%, #8e4028 100%);
+  color: #fff;
+  font-size: 1.25rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: transform 0.18s ease, filter 0.18s ease;
+}
+
+.controle-peso button:hover {
+  transform: translateY(-1px);
+  filter: brightness(1.05);
+}
+
+.controle-peso input {
+  width: 78px;
+  height: 40px;
+  border: 1px solid rgba(111, 45, 26, 0.18);
+  border-radius: 12px;
+  background: #fffaf5;
+  text-align: center;
+  font: inherit;
+  color: var(--text);
+}
+
+.order-panel {
+  position: sticky;
+  top: 18px;
+  display: grid;
+  gap: 18px;
+}
+
+.panel-card {
+  padding: 24px;
+}
+
+.panel-card h3 {
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+}
+
+.info {
+  background:
+    linear-gradient(180deg, rgba(255, 247, 235, 0.92), rgba(255, 252, 247, 0.9)),
+    var(--surface);
+}
+
+.pedido-info {
+  display: grid;
+  gap: 8px;
+}
+
 .pedido-info label {
-  display: block;
-  margin-top: 15px;
-  font-weight: bold;
-  color: #5a2a0a;
+  margin-top: 8px;
+  font-weight: 700;
+  color: var(--text);
 }
 
 .pedido-info input,
 .pedido-info select {
   width: 100%;
-  padding: 8px;
-  margin-top: 5px;
-  border-radius: 5px;
-  border: 1px solid #ccc;
-  box-sizing: border-box;
+  min-height: 46px;
+  padding: 12px 14px;
+  border: 1px solid rgba(111, 45, 26, 0.16);
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.88);
+  color: var(--text);
+  font: inherit;
+}
+
+.pedido-info input:focus,
+.pedido-info select:focus,
+.controle-peso input:focus {
+  outline: 2px solid rgba(200, 134, 58, 0.32);
+  border-color: rgba(157, 75, 47, 0.3);
+}
+
+.pix-box {
+  display: none;
+  margin-top: 10px;
+  padding: 14px;
+  border-radius: 16px;
+  background: rgba(244, 215, 171, 0.28);
+  border: 1px dashed rgba(157, 75, 47, 0.22);
+}
+
+#chave-pix {
+  cursor: pointer;
+  font-weight: 700;
+  letter-spacing: 0.04em;
 }
 
 #pix-feedback {
-  margin-top: 5px;
-  display: block;
-  font-size: 0.85em;
+  display: none;
+  margin-top: 6px;
+  color: #1f7a40;
+  font-size: 0.9rem;
 }
 
 .error-message {
-  color: red;
-  font-size: 0.9em;
-  margin-top: 4px;
-  display: block;
-  height: 16px; /* para manter o espaço mesmo quando não tiver mensagem */
+  min-height: 18px;
+  font-size: 0.88rem;
+  color: #c0392b;
 }
 
-/* Estilos para a Pop-up de Reajuste */
+.botao-whatsapp {
+  display: block;
+  padding: 18px 22px;
+  border-radius: 22px;
+  background: linear-gradient(135deg, #1f9d55 0%, #22c55e 100%);
+  color: #fff;
+  text-decoration: none;
+  text-align: center;
+  font-weight: 700;
+  font-size: 1.02rem;
+}
+
+.botao-whatsapp:hover {
+  filter: brightness(1.03);
+}
 
 .popup-overlay {
-    /* Garante que cubra a tela toda e fique por cima de tudo */
-    position: fixed; 
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.8); /* Fundo semi-transparente escuro */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 1000; /* Garante que fique acima de outros elementos */
-    /* Por padrão, a pop-up é escondida pelo JS */
-    display: none; 
+  position: fixed;
+  inset: 0;
+  display: none;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  background: rgba(55, 24, 16, 0.64);
+  backdrop-filter: blur(8px);
+  z-index: 1000;
 }
 
 .popup-content {
-    background: #282c34; /* Cor de fundo escura para contraste */
-    color: #e0e0e0;
-    padding: 30px;
-    border-radius: 10px;
-    max-width: 400px;
-    width: 90%;
-    text-align: center;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
-    position: relative;
-    border: 2px solid #22c55e; /* Borda de destaque verde */
+  position: relative;
+  width: min(460px, 100%);
+  padding: 30px;
+  border-radius: 26px;
+  background: linear-gradient(180deg, #4c281d 0%, #311912 100%);
+  color: #fff;
+  box-shadow: 0 24px 80px rgba(0, 0, 0, 0.3);
+}
+
+.popup-content h3 {
+  margin-bottom: 12px;
+  font-size: 2rem;
+}
+
+.popup-content p + p {
+  margin-top: 10px;
+}
+
+.popup-highlight {
+  color: #fff0c7;
+  font-weight: 700;
 }
 
 .popup-close {
-    position: absolute;
-    top: 10px;
-    right: 15px;
-    font-size: 24px;
-    font-weight: bold;
-    color: #999;
-    cursor: pointer;
-    transition: color 0.2s;
+  position: absolute;
+  top: 12px;
+  right: 14px;
+  width: 36px;
+  height: 36px;
+  border: none;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.1);
+  color: #fff;
+  font-size: 1.4rem;
+  cursor: pointer;
 }
 
-.popup-close:hover {
-    color: #fff;
+.popup-action {
+  margin-top: 18px;
+  border: none;
+  border-radius: 14px;
+  background: linear-gradient(135deg, #1f9d55 0%, #22c55e 100%);
+  color: #fff;
+  font: inherit;
+  font-weight: 700;
+  padding: 12px 18px;
+  cursor: pointer;
+}
+
+@media (max-width: 960px) {
+  .hero,
+  .content-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .order-panel {
+    position: static;
+  }
+}
+
+@media (max-width: 720px) {
+  .page-shell {
+    width: min(100% - 20px, 1180px);
+    padding-top: 20px;
+  }
+
+  .hero-brand {
+    grid-template-columns: 1fr;
+    text-align: center;
+    justify-items: center;
+  }
+
+  .menu-section,
+  .panel-card,
+  .hero-brand,
+  .hero-summary {
+    border-radius: 22px;
+  }
+
+  .flavor-list li {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .controle-peso {
+    justify-content: flex-end;
+  }
 }
