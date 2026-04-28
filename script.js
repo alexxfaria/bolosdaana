@@ -176,8 +176,8 @@ function primeiroClique() {
 }
 
 function atualizarPrecoKilo() {
-  const dataReajuste = new Date(2025, 10, 1);
-  const dataFimDestaque = new Date(2025, 10, 11);
+  const dataReajuste = new Date(2026, 05, 1);
+  const dataFimDestaque = new Date(2026, 05, 11);
   const dataAtual = new Date();
   const precoElemento = document.getElementById("preco-kilo");
 
@@ -186,7 +186,7 @@ function atualizarPrecoKilo() {
   }
 
   if (dataAtual >= dataReajuste) {
-    precoElemento.textContent = "R$ 70,00";
+    precoElemento.textContent = "R$ 75,00";
 
     if (dataAtual < dataFimDestaque) {
       precoElemento.style.color = "#ffe0de";
@@ -196,7 +196,7 @@ function atualizarPrecoKilo() {
       precoElemento.style.fontWeight = "";
     }
   } else {
-    precoElemento.textContent = "R$ 65,00";
+    precoElemento.textContent = "R$ 70,00";
     precoElemento.style.color = "";
   }
 }
