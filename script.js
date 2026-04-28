@@ -167,7 +167,7 @@ function fecharPopup() {
 
 function primeiroClique() {
   if (localStorage.getItem("avisoVisto") !== "true") {
-    // mostrarPopup();
+    mostrarPopup();
   }
 
   document.removeEventListener("click", primeiroClique);
@@ -176,8 +176,8 @@ function primeiroClique() {
 }
 
 function atualizarPrecoKilo() {
-  const dataReajuste = new Date(2026, 05, 1);
-  const dataFimDestaque = new Date(2026, 05, 11);
+  const dataReajuste = new Date(2026, 5, 1);
+  const dataFimDestaque = new Date(2026, 5, 11);
   const dataAtual = new Date();
   const precoElemento = document.getElementById("preco-kilo");
 
