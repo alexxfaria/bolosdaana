@@ -196,7 +196,7 @@ function atualizarPrecoKilo() {
       precoElemento.style.fontWeight = "";
     }
   } else {
-    precoElemento.textContent = "R$ 70,00";
+    precoElemento.textContent = "R$ 75,00";
     precoElemento.style.color = "";
   }
 }
