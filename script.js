@@ -186,7 +186,7 @@ function atualizarPrecoKilo() {
   }
 
   if (dataAtual >= dataReajuste) {
-    precoElemento.textContent = "R$ 75,00";
+    precoElemento.textContent = "R$ 80,00";
 
     if (dataAtual < dataFimDestaque) {
       precoElemento.style.color = "#ffe0de";
@@ -196,7 +196,7 @@ function atualizarPrecoKilo() {
       precoElemento.style.fontWeight = "";
     }
   } else {
-    precoElemento.textContent = "R$ 75,00";
+    precoElemento.textContent = "R$ 80,00";
     precoElemento.style.color = "";
   }
 }
